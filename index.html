@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Manusa Yadnya Metatah - Diah, Erika & Putri</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Styling & Themes -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#F3E5AB',
+                            dark: '#AA7C11',
+                        },
+                        maroon: {
+                            DEFAULT: '#600000',
+                            dark: '#3B0000',
+                        },
+                        cream: '#FAF6F0'
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .bg-pattern {
+            background-color: #FAF6F0;
+            background-image: radial-gradient(#D4AF37 0.5px, transparent 0.5px), radial-gradient(#D4AF37 0.5px, #FAF6F0 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+    </style>
+</head>
+<body class="font-sans bg-cream text-gray-800 antialiased overflow-x-hidden select-none">
+
+    <!-- AUDIO PLAYER -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="gamelan.mp3" type="audio/mpeg">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- FLOATING MUSIC BUTTON -->
+    <button id="music-btn" onclick="toggleMusic()" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-gold text-white shadow-xl flex items-center justify-center transition-all hover:scale-110 hidden">
+        <i id="music-icon" class="fas fa-music"></i>
+    </button>
+
+    <!-- COVER / SPLASH SCREEN -->
+    <div id="cover" class="fixed inset-0 z-50 bg-maroon-dark text-white flex flex-col items-center justify-between p-6 text-center transition-transform duration-700 ease-in-out">
+        <div class="mt-12 space-y-3">
+            <p class="font-serif text-gold tracking-widest text-sm uppercase">Om Swastyastu</p>
+            <h2 class="font-serif text-xs text-gold-light tracking-widest uppercase">Undangan Upacara Manusa Yadnya</h2>
+            <h1 class="font-serif text-3xl md:text-5xl text-gold font-bold">METATAH / MEPANDES</h1>
+        </div>
+
+        <div class="my-6 space-y-3 max-w-md">
+            <div class="w-20 h-20 mx-auto rounded-full border-2 border-gold p-1">
+                <div class="w-full h-full rounded-full bg-maroon flex items-center justify-center border border-gold">
+                    <i class="fas fa-om text-3xl text-gold"></i>
+                </div>
+            </div>
+            <p class="font-serif text-sm text-gold-light">Putri Putri Kami Yang Metatah:</p>
+            <h3 class="font-serif text-base font-semibold text-white">I Gusti Ayu Diah Laksmi Dewi</h3>
+            <h3 class="font-serif text-base font-semibold text-white">I Gusti Ayu Erika Sri Laksmi</h3>
+            <h3 class="font-serif text-base font-semibold text-white">I Gusti Ayu Putri Yanti</h3>
+        </div>
+
+        <div class="mb-10 space-y-4 w-full max-w-sm">
+            <div class="bg-maroon/60 border border-gold/40 rounded-lg p-4 backdrop-blur-sm">
+                <p class="text-xs text-gray-300">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <h4 id="guest-name" class="font-serif text-lg text-gold font-bold mt-1">Tamu Undangan</h4>
+            </div>
+            <button onclick="openInvitation()" class="w-full py-3 px-6 bg-gold hover:bg-gold-dark text-maroon-dark font-semibold rounded-full shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer">
+                <i class="fas fa-envelope-open"></i> Buka Undangan
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main-content" class="min-h-screen">
+        
+        <!-- HERO SECTION -->
+        <section class="min-h-screen bg-maroon text-white flex flex-col items-center justify-center p-6 text-center relative border-b-4 border-gold">
+            <div class="space-y-4 max-w-2xl">
+                <p class="font-serif text-gold text-lg">Om Swastyastu</p>
+                <p class="text-sm text-gray-200 leading-relaxed px-4">
+                    Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa / Tuhan Yang Maha Esa, kami bermaksud menyelenggarakan Upacara Manusa Yadnya Metatah (Potong Gigi) Putri Putri kami:
+                </p>
+                
+                <div class="py-4 space-y-4">
+                    <div class="border-y border-gold/30 py-3">
+                        <h2 class="font-serif text-xl md:text-2xl text-gold font-bold">I Gusti Ayu Diah Laksmi Dewi</h2>
+                        <p class="text-xs text-gray-300 mt-1">Putri dari pasangan Alm I Gusti Nyoman Putra Arta & I Gusti Ayu Made Widiantari</p>
+                    </div>
+                    <div class="border-b border-gold/30 pb-3">
+                        <h2 class="font-serif text-xl md:text-2xl text-gold font-bold">I Gusti Ayu Erika Sri Laksmi</h2>
+                        <p class="text-xs text-gray-300 mt-1">Putri dari pasangan Alm I Gusti Nyoman Putra Arta & I Gusti Ayu Made Widiantari</p>
+                    </div>
+                    <div class="border-b border-gold/30 pb-3">
+                        <h2 class="font-serif text-xl md:text-2xl text-gold font-bold">I Gusti Ayu Putri Yanti</h2>
+                        <p class="text-xs text-gray-300 mt-1">Putri dari pasangan I Gusti Ngurah Pariantosa & Jero Singgi</p>
+                    </div>
+                </div>
+
+                <!-- COUNTDOWN TIMER -->
+                <div class="pt-2">
+                    <p class="font-serif text-gold-light text-sm mb-3">Menghitung Hari Acara:</p>
+                    <div id="timer" class="flex justify-center gap-3 text-center">
+                        <div class="bg-maroon-dark/80 border border-gold/40 p-3 rounded-lg w-16">
+                            <span id="days" class="block font-serif text-2xl text-gold font-bold">00</span>
+                            <span class="text-[10px] uppercase text-gray-300">Hari</span>
+                        </div>
+                        <div class="bg-maroon-dark/80 border border-gold/40 p-3 rounded-lg w-16">
+                            <span id="hours" class="block font-serif text-2xl text-gold font-bold">00</span>
+                            <span class="text-[10px] uppercase text-gray-300">Jam</span>
+                        </div>
+                        <div class="bg-maroon-dark/80 border border-gold/40 p-3 rounded-lg w-16">
+                            <span id="minutes" class="block font-serif text-2xl text-gold font-bold">00</span>
+                            <span class="text-[10px] uppercase text-gray-300">Menit</span>
+                        </div>
+                        <div class="bg-maroon-dark/80 border border-gold/40 p-3 rounded-lg w-16">
+                            <span id="seconds" class="block font-serif text-2xl text-gold font-bold">00</span>
+                            <span class="text-[10px] uppercase text-gray-300">Detik</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAKNA METATAH SECTION -->
+        <section class="py-16 px-6 bg-cream text-center">
+            <div class="max-w-xl mx-auto space-y-4">
+                <i class="fas fa-quote-left text-3xl text-gold"></i>
+                <h3 class="font-serif text-xl text-maroon font-bold">Makna Upacara Metatah</h3>
+                <p class="text-xs md:text-sm text-gray-600 leading-relaxed italic">
+                    "Upacara Metatah/Mepandes merupakan bagian dari Upacara Manusa Yadnya yang bertujuan untuk mengikis Sad Ripustha (enam musuh dalam diri manusia): Kama, Lobha, Krodha, Mada, Moha, dan Matsarya, guna mengantarkan putra-putri menuju kedewasaan yang bijaksana."
+                </p>
+            </div>
+        </section>
+
+        <!-- DETAIL ACARA SECTION -->
+        <section class="py-16 px-6 bg-white border-y border-gold/20">
+            <div class="max-w-3xl mx-auto text-center space-y-10">
+                <h3 class="font-serif text-2xl text-maroon font-bold uppercase tracking-wider">Waktu & Lokasi Acara</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Ritual Metatah -->
+                    <div class="bg-cream border border-gold/40 p-6 rounded-xl shadow-sm text-center">
+                        <i class="fas fa-om text-3xl text-gold mb-3"></i>
+                        <h4 class="font-serif text-lg text-maroon font-bold mb-2">Upacara Metatah</h4>
+                        <p class="text-xs text-gray-600 mb-1"><i class="far fa-calendar-alt text-gold mr-1"></i> Minggu, 20 Desember 2026</p>
+                        <p class="text-xs text-gray-600 mb-4"><i class="far fa-clock text-gold mr-1"></i> 08.00 WITA - Selesai</p>
+                        <p class="text-xs text-gray-500">Khusus Keluarga & Kerabat Dekat</p>
+                    </div>
+
+                    <!-- Resepsi / Ramah Tamah -->
+                    <div class="bg-cream border border-gold/40 p-6 rounded-xl shadow-sm text-center">
+                        <i class="fas fa-glass-cheers text-3xl text-gold mb-3"></i>
+                        <h4 class="font-serif text-lg text-maroon font-bold mb-2">Resepsi</h4>
+                        <p class="text-xs text-gray-600 mb-1"><i class="far fa-calendar-alt text-gold mr-1"></i> Minggu, 20 Desember 2026</p>
+                        <p class="text-xs text-gray-600 mb-4"><i class="far fa-clock text-gold mr-1"></i> 14.00 WITA - Selesai</p>
+                        <p class="text-xs text-gray-500">Para Undangan & Sahabat</p>
+                    </div>
+                </div>
+
+                <!-- LOKASI & MAPS -->
+                <div class="bg-cream border border-gold/40 p-6 rounded-xl space-y-4">
+                    <i class="fas fa-map-marker-alt text-3xl text-gold"></i>
+                    <h4 class="font-serif text-lg text-maroon font-bold">Lokasi Acara</h4>
+                    <p class="text-sm font-semibold text-gray-700">Jalan Noja Saraswati Gang VL No. 1, Kesiman Petilan, Denpasar Timur, Bali</p>
+                    
+                    <a href="https://maps.google.com" target="_blank" class="inline-block py-2 px-6 bg-maroon text-gold font-semibold text-xs rounded-full shadow hover:bg-maroon-dark transition-all">
+                        <i class="fas fa-directions mr-1"></i> Buka Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP & UCAPAN -->
+        <section class="py-16 px-6 bg-cream">
+            <div class="max-w-xl mx-auto space-y-8">
+                <div class="text-center">
+                    <h3 class="font-serif text-2xl text-maroon font-bold uppercase tracking-wider">Konfirmasi Kehadiran</h3>
+                    <p class="text-xs text-gray-500 mt-1">Mohon konfirmasi kehadiran dan berikan doa restu Anda</p>
+                </div>
+
+                <form id="rsvp-form" onsubmit="submitRSVP(event)" class="bg-white p-6 rounded-xl border border-gold/30 shadow-sm space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Lengkap</label>
+                        <input type="text" id="rsvp-name" required class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:outline-none focus:border-gold" placeholder="Masukkan nama Anda">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Konfirmasi Kehadiran</label>
+                        <select id="rsvp-status" required class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:outline-none focus:border-gold">
+                            <option value="Hadir">Ya, Saya Akan Hadir</option>
+                            <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Ucapan & Doa Restu</label>
+                        <textarea id="rsvp-message" rows="3" required class="w-full p-2.5 text-xs border border-gray-300 rounded-lg focus:outline-none focus:border-gold" placeholder="Berikan doa & ucapan selamat..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-gold hover:bg-gold-dark text-maroon-dark font-bold text-xs rounded-lg transition-all">
+                        Kirim Ucapan
+                    </button>
+                </form>
+
+                <!-- DAFTAR UCAPAN -->
+                <div class="space-y-3">
+                    <h4 class="font-serif text-sm font-bold text-maroon">Ucapan & Doa dari Kerabat:</h4>
+                    <div id="wishes-list" class="space-y-3 max-h-60 overflow-y-auto pr-1">
+                        <!-- Wishes dynamic loading -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-10 bg-maroon-dark text-white text-center border-t-2 border-gold space-y-3 relative">
+            <p class="font-serif text-gold text-lg">Om Shanti Shanti Shanti Om</p>
+            <p class="text-xs text-gray-400">Merupakan suatu kehormatan & kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+            <p class="text-[10px] text-gray-500 pt-2">Kami Yang Berbahagia: Keluarga Besar</p>
+            
+            <!-- WATERMARK DEVELOPED BY TUDE -->
+            <div class="pt-6 border-t border-gold/10 mt-4">
+                <p class="text-[10px] text-gold/60 font-sans tracking-widest uppercase">Developed by <span class="font-semibold text-gold/80">Tude</span></p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Query Parameter untuk nama tamu
+        const urlParams = new URLSearchParams(window.location.search);
+        const toParam = urlParams.get('to');
+        if (toParam) {
+            document.getElementById('guest-name').innerText = toParam;
+        }
+
+        // Music controller
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = document.getElementById('music-icon');
+        let isPlaying = false;
+
+        function openInvitation() {
+            document.getElementById('cover').classList.add('-translate-y-full');
+            musicBtn.classList.remove('hidden');
+            
+            // Memutar audio saat tombol diklik (User Interaction)
+            playAudio();
+        }
+
+        function playAudio() {
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    isPlaying = true;
+                    musicIcon.className = 'fas fa-music';
+                }).catch(error => {
+                    console.log("Autoplay diblokir oleh browser atau file audio tidak ditemukan:", error);
+                    isPlaying = false;
+                    musicIcon.className = 'fas fa-volume-mute';
+                });
+            }
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.className = 'fas fa-volume-mute';
+                isPlaying = false;
+            } else {
+                audio.play();
+                musicIcon.className = 'fas fa-music';
+                isPlaying = true;
+            }
+        }
+
+        // Countdown Timer Target: 20 Desember 2026 Jam 08.00 WITA
+        const targetDate = new Date('December 20, 2026 08:00:00').getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance > 0) {
+                document.getElementById('days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutes').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('seconds').innerText = Math.floor((distance % (1000 * 60)) / 1000);
+            }
+        }, 1000);
+
+        // RSVP Handler (LocalStorage)
+        function submitRSVP(e) {
+            e.preventDefault();
+            const name = document.getElementById('rsvp-name').value;
+            const status = document.getElementById('rsvp-status').value;
+            const message = document.getElementById('rsvp-message').value;
+
+            const wishes = JSON.parse(localStorage.getItem('metatah_wishes') || '[]');
+            wishes.unshift({ name, status, message, date: new Date().toLocaleDateString() });
+            localStorage.setItem('metatah_wishes', JSON.stringify(wishes));
+
+            document.getElementById('rsvp-form').reset();
+            loadWishes();
+        }
+
+        function loadWishes() {
+            const wishes = JSON.parse(localStorage.getItem('metatah_wishes') || '[]');
+            const container = document.getElementById('wishes-list');
+            if (wishes.length === 0) {
+                container.innerHTML = '<p class="text-xs text-gray-500 italic">Belum ada ucapan.</p>';
+                return;
+            }
+            container.innerHTML = wishes.map(w => `
+                <div class="bg-white p-3 rounded-lg border border-gold/20 text-xs shadow-sm space-y-1">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-maroon">${w.name}</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] ${w.status === 'Hadir' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">${w.status}</span>
+                    </div>
+                    <p class="text-gray-600">${w.message}</p>
+                </div>
+            `).join('');
+        }
+
+        loadWishes();
+    </script>
+</body>
+</html>
